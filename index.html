@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saket Sunshine Cove - Corporate Accommodation Pitch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Colors based on user guidelines: Sober Yellow (40%), White (50%), Toned Aquamarine (10%) */
+        .color-white { --color-white: #FCFCFC; } /* Base White */
+        .color-yellow { --color-yellow: #FCD34D; } /* Primary Accent */
+        .color-aqua { --color-aqua: #4DAB9C; } /* Secondary Accent */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-white);
+            color: #1F2937; /* Dark text for contrast */
+            /* Ensure the body is not horizontally constrained or overflowing */
+            overflow-x: hidden; /* Prevent horizontal scroll from scaled elements */
+        }
+
+        /* Slide structure optimized for responsive, vertical scrolling */
+        .slide-container {
+            /* Minimum padding for mobile, increasing for desktop */
+            padding: 3rem 1.5rem; 
+            min-height: 50vh; /* Ensures some vertical space */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.5rem;
+        }
+
+        /* Utility classes for easy application */
+        .bg-primary { background-color: var(--color-white); }
+        .bg-secondary { background-color: var(--color-yellow); }
+        .bg-accent { background-color: var(--color-aqua); }
+        .text-primary { color: #1F2937; }
+        .text-secondary { color: var(--color-yellow); }
+        .text-accent { color: var(--color-aqua); }
+
+        /* --- Custom Glassmorphism Styles for Gallery --- */
+        .glass-gallery {
+            /* Matte Transparency */
+            background: rgba(255, 255, 255, 0.1); /* Very light, semi-transparent white */
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            /* Floating and Shadow Effect */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px); /* Subtle lift */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .glass-gallery:hover {
+            transform: translateY(-8px); /* More lift on hover */
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Ensure the inner grid is also slightly translucent */
+        .glass-grid-inner {
+            background-color: rgba(255, 255, 255, 0.05); 
+        }
+
+        /* Styles for the individual image panes */
+        .image-pane {
+            cursor: pointer;
+            transition: box-shadow 0.3s ease-out, transform 0.3s; /* Added transform for hover effect */
+            background-size: cover;
+            background-position: center;
+            /* Default small shadow for depth */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Ensure the hovered image is above others */
+        .image-pane:hover {
+            z-index: 10; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            /* Scale on hover for better visual focus in the gallery grid */
+            transform: scale(1.05); 
+        }
+        
+        /* Styles for the modal content (popup) */
+        .modal-content-img {
+            /* Constrain the max size to 70% of viewport to prevent touching edges */
+            max-width: 90vw; 
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Ensure the image fits within the bounds */
+        }
+        /* Spinner CSS */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid var(--color-yellow);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="color-white color-yellow color-aqua">
+
+    <!-- NEW LOGO HEADER - Fixed position for top-left visibility across all slides -->
+    <header class="fixed top-4 left-4 md:top-6 md:left-6 z-50">
+        <!-- Placeholder image for the logo (Toned Aquamarine background, White text) -->
+        <img src="./images/homeslogowithoutbackgroundcropped.png" 
+             alt="Saket Sunshine Cove Logo Placeholder" 
+             class="w-32 md:w-40 h-auto rounded-lg" 
+             onerror="this.onerror=null; this.src='./images/homeslogowithoutbackgroundcropped.png';" 
+             title="Choki Homes Logo">
+    </header>
+
+    <div class="space-y-6 md:space-y-12">
+
+        <!-- Slide 1: Title Slide (Theme: Sober Yellow Background) -->
+        <section id="slide-1" class="slide-container bg-secondary">
+            <div class="max-w-4xl text-center text-primary p-4 md:p-8 rounded-xl">
+                <p class="text-lg md:text-xl font-medium mb-2 md:mb-4 uppercase tracking-wider">A Partnership in Premium Corporate Accommodation</p>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight">
+                    Welcome to <span class="text-accent">Saket Sunshine Cove</span>
+                </h1>
+                <p class="mt-6 text-xl md:text-2xl font-light">Elevating employee and executive stays beyond the standard hotel experience.</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: The Challenge (Theme: White Background) -->
+        <section id="slide-2" class="slide-container bg-primary">
+            <div class="max-w-6xl w-full flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-accent">The Corporate Challenge</h2>
+                    <p class="text-lg text-gray-600 mb-6">The traditional corporate travel model often fails to meet the demands of modern, long-duration business stays.</p>
+                    <div class="space-y-4">
+                        <p class="flex items-start text-base md:text-lg">
+                            <span class="text-2xl mr-3 font-bold text-red-500 flex-shrink-0">-</span>
+                            <span class="font-semibold">High Cost:</span> Per-night rates for extended stays quickly inflate budgets.
+                        </p>
+                        <p class="flex items-start text-base md:text-lg">
+                            <span class="text-2xl mr-3 font-bold text-red-500 flex-shrink-0">-</span>
+                            <span class="font-semibold">Lack of Comfort:</span> Cramped rooms, no kitchen, and no true sense of "home."
+                        </p>
+                        <p class="flex items-start text-base md:text-lg">
+                            <span class="text-2xl mr-3 font-bold text-red-500 flex-shrink-0">-</span>
+                            <span class="font-semibold">Inflexibility:</span> Rigid booking policies and limited lifestyle amenities (laundry, dedicated workspace).
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 p-6 md:p-8 rounded-xl shadow-xl bg-gray-50 border border-gray-200">
+                    <p class="text-3xl md:text-5xl font-extrabold text-secondary leading-snug">
+                        "Your team deserves <span class="text-accent">comfort</span>, <span class="text-accent">value</span>, and a space that enhances <span class="text-accent">productivity</span>."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Introducing The Space (Theme: Sober Yellow Background) -->
+        <section id="slide-3" class="slide-container bg-secondary">
+            <div class="max-w-6xl w-full text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary">
+                    The Saket Sunshine Cove Difference
+                </h2>
+                <p class="text-lg md:text-xl font-light mb-10 text-gray-800">
+                    A design-led, fully equipped residence built for modern professional life.
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1 bg-primary p-6 rounded-xl shadow-lg border-b-4 border-accent">
+                        <span class="text-3xl md:text-4xl text-accent mb-3 block">&#9733;</span>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-2">Unique Aesthetic</h3>
+                        <p class="text-gray-600 text-sm md:text-base">The bright theme of English Yellow, White, and Aquamarine promotes a positive, focused, and stress-free environment.</p>
+                    </div>
+                    <div class="flex-1 bg-primary p-6 rounded-xl shadow-lg border-b-4 border-accent">
+                        <span class="text-3xl md:text-4xl text-accent mb-3 block">&#127969;</span>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-2">Full Amenities</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Dedicated workspace, high-speed Wi-Fi, fully equipped kitchen, in-unit laundry, and private parking.</p>
+                    </div>
+                    <div class="flex-1 bg-primary p-6 rounded-xl shadow-lg border-b-4 border-accent">
+                        <span class="text-3xl md:text-4xl text-accent mb-3 block">&#128176;</span>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-2">Cost Efficiency</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Substantial savings over equivalent hotel stays, especially for projects requiring 7+ or 30+ nights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Corporate Use Cases (Theme: White Background) -->
+        <section id="slide-4" class="slide-container bg-primary">
+            <div class="max-w-6xl w-full">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 md:mb-12 text-accent text-center">
+                    Key Corporate Use Cases
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    
+                    <div class="bg-gray-100 p-6 rounded-xl shadow-md border-t-4 border-secondary">
+                        <p class="text-xl font-extrabold text-secondary mb-2">01</p>
+                        <h3 class="text-2xl font-semibold mb-3">Project Teams</h3>
+                        <p class="text-gray-600">Housing audit, IT, or launch teams for intense, short-term assignments (7-30 days).</p>
+                    </div>
+
+                    <div class="bg-gray-100 p-6 rounded-xl shadow-md border-t-4 border-secondary">
+                        <p class="text-xl font-extrabold text-secondary mb-2">02</p>
+                        <h3 class="text-2xl font-semibold mb-3">Executive Stays</h3>
+                        <p class="text-gray-600">Comfortable, private, and elevated accommodation for visiting C-suite executives or VIP clients.</p>
+                    </div>
+
+                    <div class="bg-gray-100 p-6 rounded-xl shadow-md border-t-4 border-secondary">
+                        <p class="text-xl font-extrabold text-secondary mb-2">03</p>
+                        <h3 class="text-2xl font-semibold mb-3">Relocation & Onboarding</h3>
+                        <p class="text-gray-600">Seamless, long-term temporary housing (30-90 days) for new employees before they settle.</p>
+                    </div>
+
+                    <div class="bg-gray-100 p-6 rounded-xl shadow-md border-t-4 border-secondary">
+                        <p class="text-xl font-extrabold text-secondary mb-2">04</p>
+                        <h3 class="text-2xl font-semibold mb-3">Offsites & Strategy</h3>
+                        <p class="text-gray-600">A relaxed, creative environment for small team strategy sessions away from the main office.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Value Proposition Summary (Theme: Toned Aquamarine Background) -->
+        <section id="slide-5" class="slide-container bg-accent">
+            <div class="max-w-4xl text-center text-primary p-4 md:p-8 rounded-xl">
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-6 text-white">The Triple-Threat Value</h2>
+                <p class="text-xl md:text-2xl font-medium text-white mb-10">How Saket Sunshine Cove delivers superior ROI for your travel budget.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="flex-1 bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                        <p class="text-3xl md:text-4xl font-bold text-secondary mb-3">25%+</p>
+                        <h3 class="text-lg md:text-xl font-semibold">Cost Savings</h3>
+                        <p class="text-gray-600 text-sm">Compared to traditional hotel extended-stay rates.</p>
+                    </div>
+                    <div class="flex-1 bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                        <p class="text-3xl md:text-4xl font-bold text-secondary mb-3">100%</p>
+                        <h3 class="text-lg md:text-xl font-semibold">Employee Satisfaction</h3>
+                        <p class="text-gray-600 text-sm">Full kitchen, dedicated space, and a true sense of home.</p>
+                    </div>
+                    <div class="flex-1 bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                        <p class="text-3xl md:text-4xl font-bold text-secondary mb-3">0%</p>
+                        <h3 class="text-lg md:text-xl font-semibold">Administrative Hassle</h3>
+                        <p class="text-gray-600 text-sm">One dedicated point of contact for all bookings and logistics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Business Amenities Checklist (Theme: White Background) -->
+        <section id="slide-6" class="slide-container bg-primary">
+            <div class="max-w-6xl w-full flex flex-col lg:flex-row gap-8 md:gap-12 items-start">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-secondary">Ready for Business.</h2>
+                    <p class="text-lg md:text-xl text-gray-700">The property is configured to support high-productivity work schedules, from remote meetings to late-night calls.</p>
+                    <!-- <a href="https://www.airbnb.com/h/saketsunshinecove" target="_blank" class="mt-4 inline-block text-accent font-semibold hover:underline">View the Listing Details &rarr;</a> -->
+                </div>
+                <div class="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="p-4 rounded-lg bg-gray-50 border-l-4 border-accent shadow-md">
+                        <p class="text-2xl md:text-3xl font-bold text-accent mb-2">&#128187;</p>
+                        <p class="font-semibold">Dedicated Workspace</p>
+                        <p class="text-sm text-gray-600">Ergonomic seating and ample desk space away from the main living area.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border-l-4 border-accent shadow-md">
+                        <p class="text-2xl md:text-3xl font-bold text-accent mb-2">&#128246;</p>
+                        <p class="font-semibold">High-Speed Connectivity</p>
+                        <p class="text-sm text-gray-600">Reliable, fast Wi-Fi suitable for video conferencing and large file transfers.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border-l-4 border-accent shadow-md">
+                        <p class="text-2xl md:text-3xl font-bold text-accent mb-2">&#127860;</p>
+                        <p class="font-semibold">Full Kitchen & Dining</p>
+                        <p class="text-sm text-gray-600">The ability to prepare healthy meals, saving on expensive per-diem and restaurant costs.</p>
+                    </div>
+                    <div class="p-4 rounded-lg bg-gray-50 border-l-4 border-accent shadow-md">
+                        <p class="text-2xl md:text-3xl font-bold text-accent mb-2">&#128716;</p>
+                        <p class="font-semibold">Flexible Check-in/out</p>
+                        <p class="text-sm text-gray-600">Smooth, self-check-in process optimized for late-night corporate arrivals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Partnership Model (Theme: Sober Yellow Background) -->
+        <section id="slide-7" class="slide-container bg-secondary">
+            <div class="max-w-5xl text-center text-primary p-4 md:p-8 rounded-xl">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary">A Tailored Partnership</h2>
+                <p class="text-lg md:text-xl font-light mb-8 text-gray-800">We offer simplified booking and customized agreements to fit your volume and security needs.</p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <div class="p-6 bg-primary rounded-xl shadow-lg border-b-4 border-accent transition duration-300 hover:scale-[1.02]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 text-accent">Preferred Rates</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Guaranteed competitive pricing and pre-negotiated long-stay discounts for repeat bookings.</p>
+                    </div>
+                    <div class="p-6 bg-primary rounded-xl shadow-lg border-b-4 border-accent transition duration-300 hover:scale-[1.02]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 text-accent">Direct Billing</h3>
+                        <p class="text-gray-600 text-sm md:text-base">Ability to bypass the standard Airbnb payment platform for a simplified monthly invoicing process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Call to Action (Theme: Toned Aquamarine Background) -->
+        <section id="slide-8" class="slide-container bg-accent">
+            <!-- 1. Constrained Text Content (Header/Link only) -->
+            <div class="max-w-4xl text-center text-white w-full">
+                <h2 class="text-4xl md:text-6xl font-extrabold mb-6">Let's Discuss Your Needs.</h2>
+                <p class="text-2xl md:text-3xl mb-10 font-light">We are ready to align Saket Sunshine Cove with your corporate travel policy and budget.</p>
+                
+                <p class="text-lg font-semibold mb-4">Your next step to superior corporate accommodation:</p>
+                
+          <!--      <div class="bg-white text-primary p-6 rounded-xl shadow-2xl inline-block">
+                    <p class="text-xl md:text-2xl font-bold mb-2">Explore the Space</p>
+                    <a href="https://www.airbnb.com/h/saketsunshinecove" target="_blank" class="text-accent text-lg md:text-xl font-medium hover:underline block truncate" title="https://www.airbnb.com/h/saketsunshinecove">
+                        
+                    </a>
+                </div> -->
+            </div>
+
+            <!-- 2. Full-Width Gallery -->
+            <div class="mt-6 w-full">
+                <div class="max-w-full mx-auto p-2 md:p-3 rounded-3xl glass-gallery">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 p-2 rounded-2xl glass-grid-inner">
+                        
+                        <!-- Image 1: Tall / Col-span-1 (UPLOADED FILE 1) -->
+                        <div class="image-pane h-64 rounded-lg overflow-hidden col-span-1 md:col-span-1" 
+                            style="background-image: url('./images/bedroom1.jpg');"
+                            onclick="openModal('./images/bedroom1.jpg')"
+                            ></div>
+
+                        <!-- Image 2: Wide / Col-span-2 (UPLOADED FILE 2) -->
+                        <div class="image-pane h-64 rounded-lg overflow-hidden col-span-1 md:col-span-2"
+                            style="background-image: url('./images/bedroom2.jpg');"
+                            onclick="openModal('./images/bedroom2.jpg')"
+                            ></div>
+                            
+                        <!-- Image 3: Full Width / Col-span-3 (KITCHEN/DINING PLACEHOLDER - REPLACE ME) -->
+                        <div class="image-pane h-96 rounded-lg overflow-hidden col-span-2 md:col-span-3"
+                            style="background-image: url('./images/livingroom.jpg'); background-repeat: no-repeat; background-size: cover;"
+                            onclick="openModal('./images/livingroom.jpg')"
+                            ></div>
+
+                        <!-- Image 4: Standard / Col-span-1 (STUDY/BALCONY PLACEHOLDER - REPLACE ME) -->
+                        <div class="image-pane h-64 rounded-lg overflow-hidden col-span-1 md:col-span-1"
+                            style="background-image: url('./images/kitchen.jpg'); background-repeat: no-repeat; background-size: cover;"
+                            onclick="openModal('./images/kitchen.jpg')"
+                            ></div>
+
+                        <!-- Image 5: Wide / Col-span-2 (EXTERIOR PLACEHOLDER - REPLACE ME) -->
+                        <div class="image-pane h-64 rounded-lg overflow-hidden col-span-1 md:col-span-2"
+                            style="background-image: url('./images/livingroom2.jpg'); background-repeat: no-repeat; background-size: cover;"
+                            onclick="openModal('./images/livingroom2.jpg')"
+                            ></div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Image Modal (Popup) -->
+    <div id="image-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 transition-opacity duration-300" onclick="closeModal()">
+        <div class="relative p-4 md:p-8" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-3xl font-bold leading-none p-2 rounded-full hover:bg-white/20 transition z-50">
+                &times;
+            </button>
+            <!-- Image now strictly controlled by CSS max-width/height -->
+            <img id="modal-image" class="modal-content-img rounded-lg shadow-2xl" src="" alt="Expanded Gallery Image">
+        </div>
+    </div>
+    
+    <script type="module">
+        /**
+         * Modal Functions
+         */
+        window.openModal = (imageSrc) => {
+            document.getElementById('modal-image').src = imageSrc;
+            document.getElementById('image-modal').classList.remove('hidden');
+        }
+
+        window.closeModal = () => {
+            document.getElementById('image-modal').classList.add('hidden');
+        }
+
+        // Close modal when escape key is pressed
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
